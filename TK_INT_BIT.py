@@ -5,8 +5,8 @@ from tkinter import ttk
 class MyFrame:
     def __init__(self):
         self.win = tk.Tk()
-        self.win.title("WIEGAND")
-        self.win.geometry("400x140+450+220")
+        self.win.title("Wiegand")
+        self.win.geometry("400x145+450+220")
         self.win.resizable(False, False)
         self.win.grid_columnconfigure(0, minsize=200)
         self.win.grid_columnconfigure(1, minsize=200)
@@ -29,8 +29,10 @@ class MyFrame:
         self.empt_code.grid(row=1, column=0)
         self.empt_wiegand.grid(row=1, column=1)
 
-        self.btn_code = tk.Button(self.win, text='GET CODE', command=self.GET_code)
-        self.btn_wiedand = tk.Button(self.win, text='GET WIEGAND', command=self.GET_wiegand)
+        self.btn_code = tk.Button(
+            self.win, text='GET CODE', command=self.GET_code)
+        self.btn_wiedand = tk.Button(
+            self.win, text='GET WIEGAND', command=self.GET_wiegand)
         self.btn_code.grid(row=3, column=0)
         self.btn_wiedand.grid(row=3, column=1)
 
@@ -38,21 +40,25 @@ class MyFrame:
         if self.comb_wiegand.get() == "Wiegand 26":
             if self.empt_wiegand.get() != '':
                 self.empt_wiegand.delete(0, "end")
-            self.empt_wiegand.insert(0, f"{Wiegand26(BitCode(f'{self.empt_code.get()}')).get_wiegand26()}")
+            self.empt_wiegand.insert(
+                0, f"{Wiegand26(BitCode(f'{self.empt_code.get()}')).get_wiegand26()}")
         if self.comb_wiegand.get() == "Wiegand 34":
             if self.empt_wiegand.get() != '':
                 self.empt_wiegand.delete(0, "end")
-            self.empt_wiegand.insert(0, f"{Wiegand34(BitCode(f'{self.empt_code.get()}')).get_wiegand34()}")
+            self.empt_wiegand.insert(
+                0, f"{Wiegand34(BitCode(f'{self.empt_code.get()}')).get_wiegand34()}")
 
     def GET_code(self):
         if self.comb_wiegand.get() == "Wiegand 26":
             if self.empt_code.get() != "":
                 self.empt_code.delete(0, "end")
-            self.empt_code.insert(0, f"{Wiegand26(BitCode(f'{self.empt_wiegand.get()}')).get_codecard26()}")
+            self.empt_code.insert(
+                0, f"{Wiegand26(BitCode(f'{self.empt_wiegand.get()}')).get_codecard26()}")
         if self.comb_wiegand.get() == "Wiegand 34":
             if self.empt_code.get() != "":
                 self.empt_code.delete(0, "end")
-            self.empt_code.insert(0, f"{Wiegand34(BitCode(f'{self.empt_wiegand.get()}')).get_codecard34()}")
+            self.empt_code.insert(
+                0, f"{Wiegand34(BitCode(f'{self.empt_wiegand.get()}')).get_codecard34()}")
 
     def DEL_code(self):
         self.empt_code.delete(0, "end")
